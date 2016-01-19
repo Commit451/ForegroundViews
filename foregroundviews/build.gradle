@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 23
@@ -22,4 +23,14 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+}
+
+// ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+publish {
+    userOrg = 'commit451'
+    groupId = 'com.commit451'
+    artifactId = 'foregroundviews'
+    publishVersion = '1.0.0'
+    desc = 'Views that supports a foreground, like FrameLayout does'
+    website = 'https://github.com/Commit451/ForegroundViews'
 }

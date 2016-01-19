@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.commit451.foregroundimageview.ForegroundImageView;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -12,5 +14,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ForegroundImageView foregroundImageView = (ForegroundImageView) findViewById(R.id.toolbar);
     }
 }
