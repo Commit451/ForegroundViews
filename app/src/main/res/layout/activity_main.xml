@@ -29,13 +29,11 @@
 
 
         <com.commit451.foregroundimageview.ForegroundImageView
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
             android:clickable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/header_image_1"
-            android:tint="@color/colorAccent" />
+            android:foreground="?attr/selectableItemBackgroundBorderless" />
 
         <com.commit451.foregroundimageview.ForegroundLinearLayout
             android:layout_width="match_parent"
