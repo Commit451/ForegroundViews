@@ -1,5 +1,5 @@
 # ForegroundViews
-Views that supports a foreground, like FrameLayout does. Inspired by https://gist.github.com/chrisbanes/9091754
+Views that supports a foreground, like FrameLayout does. Inspired by [Chris Banes' gist]( https://gist.github.com/chrisbanes/9091754) and this [post](https://plus.google.com/+NickButcher/posts/azEU6s4APbu).
 
 [![Build Status](https://travis-ci.org/Commit451/ForegroundViews.svg?branch=master)](https://travis-ci.org/Commit451/ForegroundViews)
 
