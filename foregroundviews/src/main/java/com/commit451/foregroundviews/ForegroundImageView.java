@@ -1,4 +1,4 @@
-package com.commit451.foregroundimageview;
+package com.commit451.foregroundviews;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.os.Build;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.Gravity;
+
+import com.commit451.foregroundviews.R;
 
 /**
  * Thanks, Gabriel
@@ -38,7 +40,6 @@ public class ForegroundImageView extends AppCompatImageView {
 
     public ForegroundImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundView,
                 defStyle, 0);

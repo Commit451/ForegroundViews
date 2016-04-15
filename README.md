@@ -6,11 +6,22 @@ Views that supports a foreground, like FrameLayout does. Inspired by [Chris Bane
 [![Build Status](https://travis-ci.org/Commit451/ForegroundViews.svg?branch=master)](https://travis-ci.org/Commit451/ForegroundViews)
 
 # Gradle Dependency
-Easily reference the library in your Android projects using this dependency in your module's `build.gradle` file:
 
-```Gradle
+Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
+
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+Then, add the library to your project `build.gradle`
+```gradle
 dependencies {
-    compile 'com.commit451:foregroundviews:1.0.0'
+    compile 'com.github.Commit451:ForegroundViews:2.0.0'
 }
 ```
 
@@ -18,7 +29,7 @@ dependencies {
 Usage is very similar for each of the foreground views. Within XML:
 
 ```xml
-<com.commit451.foregroundimageview.ForegroundLinearLayout
+<com.commit451.foregroundviews.ForegroundLinearLayout
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:clickable="true"
@@ -28,11 +39,11 @@ Usage is very similar for each of the foreground views. Within XML:
 
   <!-- Other views go here -->
 
-</com.commit451.foregroundimageview.ForegroundLinearLayout>
+</com.commit451.foregroundviews.ForegroundLinearLayout>
 ```
 for `ViewGroup`s and:
 ```xml
-<com.commit451.foregroundimageview.ForegroundImageView
+<com.commit451.foregroundviews.ForegroundImageView
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:background="@color/colorPrimary"

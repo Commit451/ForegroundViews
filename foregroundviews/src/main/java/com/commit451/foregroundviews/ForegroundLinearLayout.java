@@ -17,7 +17,7 @@
  *  *****************************************************************************
  */
 
-package com.commit451.foregroundimageview;
+package com.commit451.foregroundviews;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -28,10 +28,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
+
+import com.commit451.foregroundviews.R;
 
 
-public class ForegroundRelativeLayout extends RelativeLayout {
+public class ForegroundLinearLayout extends LinearLayout {
 
     private Drawable mForeground;
 
@@ -44,15 +46,15 @@ public class ForegroundRelativeLayout extends RelativeLayout {
 
     boolean mForegroundBoundsChanged = false;
 
-    public ForegroundRelativeLayout(Context context) {
+    public ForegroundLinearLayout(Context context) {
         super(context);
     }
 
-    public ForegroundRelativeLayout(Context context, AttributeSet attrs) {
+    public ForegroundLinearLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ForegroundRelativeLayout(Context context, AttributeSet attrs, int defStyle) {
+    public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
 

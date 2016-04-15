@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.commit451.foregroundimageview.sample" >
+    package="com.commit451.foregroundviews.sample" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
 

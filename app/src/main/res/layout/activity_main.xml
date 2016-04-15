@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.commit451.foregroundimageview.sample.MainActivity">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,14 +28,14 @@
         </android.support.design.widget.AppBarLayout>
 
 
-        <com.commit451.foregroundimageview.ForegroundImageView
+        <com.commit451.foregroundviews.ForegroundImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackgroundBorderless" />
 
-        <com.commit451.foregroundimageview.ForegroundLinearLayout
+        <com.commit451.foregroundviews.ForegroundLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -55,9 +55,9 @@
                 android:text="This is a LinearLayout with a foreground" />
 
 
-        </com.commit451.foregroundimageview.ForegroundLinearLayout>
+        </com.commit451.foregroundviews.ForegroundLinearLayout>
 
-        <com.commit451.foregroundimageview.ForegroundLinearLayout
+        <com.commit451.foregroundviews.ForegroundRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -66,6 +66,7 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/bonjor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bonjor"
@@ -74,10 +75,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="This is a RelativeLayout with a foreground" />
+                android:text="This is a RelativeLayout with a foreground"
+                android:layout_below="@id/bonjor"/>
 
 
-        </com.commit451.foregroundimageview.ForegroundLinearLayout>
+        </com.commit451.foregroundviews.ForegroundRelativeLayout>
 
     </LinearLayout>
 
