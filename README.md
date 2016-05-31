@@ -1,5 +1,5 @@
 # ForegroundViews
-Views that supports a foreground, like FrameLayout does. Inspired by [Chris Banes' gist]( https://gist.github.com/chrisbanes/9091754) and this [post](https://plus.google.com/+NickButcher/posts/azEU6s4APbu).
+Views that supports a foreground, like FrameLayout does. Inspired by [Chris Banes' gist]( https://gist.github.com/chrisbanes/9091754) and this [post](https://plus.google.com/+NickButcher/posts/azEU6s4APbu) as well as [this](https://github.com/NightlyNexus/cardslib/blob/master/library-core/src/main/java/it/gmariotti/cardslib/library/view/ForegroundLinearLayout.java).
 
 ![Sample Gif](https://raw.githubusercontent.com/Commit451/ForegroundViews/master/art/image_ripple.gif)
 
@@ -67,9 +67,15 @@ foregroundImageView.setForeground(drawable);
 
 There may be others that people want, so pull requests are encouraged!
 
+# Create Your Own Views
+If you take a look at the source, you will see that the supported views all are very similar in construction. Operations are overridden in the views and then passed along to the `ForegroundDelegate` so that the foreground logic is easily shared and reusable on new views. Most of the time, copying the source of `ForegroundLinearLayout` and then modifying the name and the extended view is all you need to do.
+
 License
 --------
 
+    Copyright 2016 Gabriele Mariotti
+    Copyright 2016 Eric Cochran
+    Copyright 2016 Chris Banes
     Copyright 2016 Commit 451
 
     Licensed under the Apache License, Version 2.0 (the "License");
