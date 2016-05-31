@@ -3,7 +3,7 @@ Views that supports a foreground, like FrameLayout does. Inspired by [Chris Bane
 
 ![Sample Gif](https://raw.githubusercontent.com/Commit451/ForegroundViews/master/art/image_ripple.gif)
 
-[![Build Status](https://travis-ci.org/Commit451/ForegroundViews.svg?branch=master)](https://travis-ci.org/Commit451/ForegroundViews)
+[![Build Status](https://travis-ci.org/Commit451/ForegroundViews.svg?branch=master)](https://travis-ci.org/Commit451/ForegroundViews) [![](https://jitpack.io/v/Commit451/ForegroundViews.svg)](https://jitpack.io/#Commit451/ForegroundViews)
 
 # Gradle Dependency
 
@@ -21,7 +21,7 @@ allprojects {
 Then, add the library to your project `build.gradle`
 ```gradle
 dependencies {
-    compile 'com.github.Commit451:ForegroundViews:2.0.0'
+    compile 'com.github.Commit451:ForegroundViews:2.0.1'
 }
 ```
 
