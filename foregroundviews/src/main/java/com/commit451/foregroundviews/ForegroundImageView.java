@@ -1,37 +1,37 @@
+/*
+ * ******************************************************************************
+ *   Copyright (c)
+ *   https://gist.github.com/chrisbanes/9091754
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ *  *****************************************************************************
+ */
+
 package com.commit451.foregroundviews;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.view.Gravity;
 
-import com.commit451.foregroundviews.R;
 
-/**
- * Thanks, Gabriel
- * https://github.com/NightlyNexus/cardslib/blob/master/library-core/src/main/java/it/gmariotti/cardslib/library/view/ForegroundLinearLayout.java
- */
 public class ForegroundImageView extends AppCompatImageView {
 
-    private Drawable mForeground;
-
-    private final Rect mSelfBounds = new Rect();
-    private final Rect mOverlayBounds = new Rect();
-
-    private int mForegroundGravity = Gravity.FILL;
-
-    protected boolean mForegroundInPadding = true;
-
-    boolean mForegroundBoundsChanged = false;
+    ForegroundDelegate mForegroundDelegate;
 
     public ForegroundImageView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public ForegroundImageView(Context context, AttributeSet attrs) {
@@ -41,22 +41,8 @@ public class ForegroundImageView extends AppCompatImageView {
     public ForegroundImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundView,
-                defStyle, 0);
-
-        mForegroundGravity = a.getInt(
-                R.styleable.ForegroundView_android_foregroundGravity, mForegroundGravity);
-
-        final Drawable d = a.getDrawable(R.styleable.ForegroundView_android_foreground);
-        if (d != null) {
-            setForeground(d);
-        }
-
-        mForegroundInPadding = a.getBoolean(
-                R.styleable.ForegroundView_android_foregroundInsidePadding, true);
-
-        a.recycle();
-
+        mForegroundDelegate = new ForegroundDelegate(this);
+        mForegroundDelegate.init(context, attrs, defStyle);
     }
 
     /**
@@ -67,7 +53,7 @@ public class ForegroundImageView extends AppCompatImageView {
      * @see #setForegroundGravity(int)
      */
     public int getForegroundGravity() {
-        return mForegroundGravity;
+        return mForegroundDelegate.getForegroundGravity();
     }
 
     /**
@@ -78,44 +64,24 @@ public class ForegroundImageView extends AppCompatImageView {
      * @see #getForegroundGravity()
      */
     public void setForegroundGravity(int foregroundGravity) {
-        if (mForegroundGravity != foregroundGravity) {
-            if ((foregroundGravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 0) {
-                foregroundGravity |= Gravity.START;
-            }
-
-            if ((foregroundGravity & Gravity.VERTICAL_GRAVITY_MASK) == 0) {
-                foregroundGravity |= Gravity.TOP;
-            }
-
-            mForegroundGravity = foregroundGravity;
-
-
-            if (mForegroundGravity == Gravity.FILL && mForeground != null) {
-                Rect padding = new Rect();
-                mForeground.getPadding(padding);
-            }
-
-            requestLayout();
-        }
+        mForegroundDelegate.setForegroundGravity(foregroundGravity);
     }
 
     @Override
     protected boolean verifyDrawable(Drawable who) {
-        return super.verifyDrawable(who) || (who == mForeground);
+        return super.verifyDrawable(who) || (who == mForegroundDelegate.getForeground());
     }
 
     @Override
     public void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        if (mForeground != null) mForeground.jumpToCurrentState();
+        mForegroundDelegate.jumpDrawablesToCurrentState();
     }
 
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        if (mForeground != null && mForeground.isStateful()) {
-            mForeground.setState(getDrawableState());
-        }
+        mForegroundDelegate.drawableStateChanged();
     }
 
     /**
@@ -127,30 +93,7 @@ public class ForegroundImageView extends AppCompatImageView {
      * @param drawable The Drawable to be drawn on top of the children.
      */
     public void setForeground(Drawable drawable) {
-        if (mForeground != drawable) {
-            if (mForeground != null) {
-                mForeground.setCallback(null);
-                unscheduleDrawable(mForeground);
-            }
-
-            mForeground = drawable;
-
-            if (drawable != null) {
-                setWillNotDraw(false);
-                drawable.setCallback(this);
-                if (drawable.isStateful()) {
-                    drawable.setState(getDrawableState());
-                }
-                if (mForegroundGravity == Gravity.FILL) {
-                    Rect padding = new Rect();
-                    drawable.getPadding(padding);
-                }
-            }  else {
-                setWillNotDraw(true);
-            }
-            requestLayout();
-            invalidate();
-        }
+        mForegroundDelegate.setForeground(drawable);
     }
 
     /**
@@ -160,61 +103,30 @@ public class ForegroundImageView extends AppCompatImageView {
      * @return A Drawable or null if no foreground was set.
      */
     public Drawable getForeground() {
-        return mForeground;
+        return mForegroundDelegate.getForeground();
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        mForegroundBoundsChanged = changed;
+        mForegroundDelegate.onLayout(changed, left, top, right, bottom);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mForegroundBoundsChanged = true;
+        mForegroundDelegate.onSizeChanged(w, h, oldw, oldh);
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-
-        if (mForeground != null) {
-            final Drawable foreground = mForeground;
-
-            if (mForegroundBoundsChanged) {
-                mForegroundBoundsChanged = false;
-                final Rect selfBounds = mSelfBounds;
-                final Rect overlayBounds = mOverlayBounds;
-
-                final int w = getRight() - getLeft();
-                final int h = getBottom() - getTop();
-
-                if (mForegroundInPadding) {
-                    selfBounds.set(0, 0, w, h);
-                } else {
-                    selfBounds.set(getPaddingLeft(), getPaddingTop(),
-                            w - getPaddingRight(), h - getPaddingBottom());
-                }
-
-                Gravity.apply(mForegroundGravity, foreground.getIntrinsicWidth(),
-                        foreground.getIntrinsicHeight(), selfBounds, overlayBounds);
-                foreground.setBounds(overlayBounds);
-            }
-
-            foreground.draw(canvas);
-        }
+        mForegroundDelegate.draw(canvas);
     }
 
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void drawableHotspotChanged(float x, float y) {
         super.drawableHotspotChanged(x, y);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (mForeground != null) {
-                mForeground.setHotspot(x, y);
-            }
-        }
+        mForegroundDelegate.drawableHotspotChanged(x, y);
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,9 +10,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -23,64 +23,75 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         </android.support.design.widget.AppBarLayout>
 
-
-        <com.commit451.foregroundviews.ForegroundImageView
-            android:id="@+id/image"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless" />
+            android:layout_height="wrap_content">
 
-        <com.commit451.foregroundviews.ForegroundLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello"
-                android:textSize="22sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="This is a LinearLayout with a foreground" />
+                <com.commit451.foregroundviews.ForegroundImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:scaleType="centerCrop"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"/>
 
+                <com.commit451.foregroundviews.ForegroundLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-        </com.commit451.foregroundviews.ForegroundLinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hello"
+                        android:textSize="22sp"/>
 
-        <com.commit451.foregroundviews.ForegroundRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/bonjor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bonjor"
-                android:textSize="22sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="This is a RelativeLayout with a foreground"
-                android:layout_below="@id/bonjor"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="This is a LinearLayout with a foreground"/>
 
 
-        </com.commit451.foregroundviews.ForegroundRelativeLayout>
+                </com.commit451.foregroundviews.ForegroundLinearLayout>
 
+                <com.commit451.foregroundviews.ForegroundRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/bonjor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bonjor"
+                        android:textSize="22sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bonjor"
+                        android:text="This is a RelativeLayout with a foreground"/>
+
+
+                </com.commit451.foregroundviews.ForegroundRelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
