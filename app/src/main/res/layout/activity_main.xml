@@ -90,6 +90,16 @@
 
                 </com.commit451.foregroundviews.ForegroundRelativeLayout>
 
+                <com.commit451.foregroundviews.ForegroundButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:background="?attr/colorAccent"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:text="This is a foreground button"/>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
