@@ -70,6 +70,9 @@ There may be others that people want, so pull requests are encouraged!
 # Create Your Own Views
 If you take a look at the source, you will see that the supported views all are very similar in construction. Operations are overridden in the views and then passed along to the `ForegroundDelegate` so that the foreground logic is easily shared and reusable on new views. Most of the time, copying the source of `ForegroundLinearLayout` and then modifying the name and the extended view is all you need to do.
 
+# Note
+Foregrounds were added to `View` as of Android 6.0 (API 23). If you have the ability to target 6.0+ (lol yeah right) then you have no need for a library like this. We look forward to the day when targeting 6.0+ is the standard and this library can be deprecated.
+
 License
 --------
 
