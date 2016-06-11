@@ -52,6 +52,7 @@ public class ForegroundRelativeLayout extends RelativeLayout {
      *
      * @see #setForegroundGravity(int)
      */
+    @Override
     public int getForegroundGravity() {
         return mForegroundDelegate.getForegroundGravity();
     }
@@ -63,6 +64,7 @@ public class ForegroundRelativeLayout extends RelativeLayout {
      *
      * @see #getForegroundGravity()
      */
+    @Override
     public void setForegroundGravity(int foregroundGravity) {
         mForegroundDelegate.setForegroundGravity(foregroundGravity);
     }
@@ -92,6 +94,7 @@ public class ForegroundRelativeLayout extends RelativeLayout {
      *
      * @param drawable The Drawable to be drawn on top of the children.
      */
+    @Override
     public void setForeground(Drawable drawable) {
         mForegroundDelegate.setForeground(drawable);
     }
@@ -102,6 +105,7 @@ public class ForegroundRelativeLayout extends RelativeLayout {
      *
      * @return A Drawable or null if no foreground was set.
      */
+    @Override
     public Drawable getForeground() {
         return mForegroundDelegate.getForeground();
     }

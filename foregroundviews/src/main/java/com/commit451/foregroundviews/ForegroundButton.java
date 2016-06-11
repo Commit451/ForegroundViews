@@ -92,6 +92,7 @@ public class ForegroundButton extends AppCompatButton {
      *
      * @param drawable The Drawable to be drawn on top of the children.
      */
+    @Override
     public void setForeground(Drawable drawable) {
         mForegroundDelegate.setForeground(drawable);
     }
@@ -102,6 +103,7 @@ public class ForegroundButton extends AppCompatButton {
      *
      * @return A Drawable or null if no foreground was set.
      */
+    @Override
     public Drawable getForeground() {
         return mForegroundDelegate.getForeground();
     }
