@@ -64,7 +64,9 @@ public class ForegroundButton extends AppCompatButton {
      * @see #getForegroundGravity()
      */
     public void setForegroundGravity(int foregroundGravity) {
-        mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        if (mForegroundDelegate != null) {
+            mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        }
     }
 
     @Override
@@ -94,7 +96,9 @@ public class ForegroundButton extends AppCompatButton {
      */
     @Override
     public void setForeground(Drawable drawable) {
-        mForegroundDelegate.setForeground(drawable);
+        if (mForegroundDelegate != null) {
+            mForegroundDelegate.setForeground(drawable);
+        }
     }
 
     /**

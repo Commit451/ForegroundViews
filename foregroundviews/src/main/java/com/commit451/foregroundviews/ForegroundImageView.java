@@ -66,7 +66,9 @@ public class ForegroundImageView extends AppCompatImageView {
      */
     @Override
     public void setForegroundGravity(int foregroundGravity) {
-        mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        if (mForegroundDelegate != null) {
+            mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        }
     }
 
     @Override
@@ -96,7 +98,9 @@ public class ForegroundImageView extends AppCompatImageView {
      */
     @Override
     public void setForeground(Drawable drawable) {
-        mForegroundDelegate.setForeground(drawable);
+        if (mForegroundDelegate != null) {
+            mForegroundDelegate.setForeground(drawable);
+        }
     }
 
     /**
