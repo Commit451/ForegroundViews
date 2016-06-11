@@ -64,7 +64,9 @@ public class ForegroundButton extends AppCompatButton {
      * @see #getForegroundGravity()
      */
     public void setForegroundGravity(int foregroundGravity) {
-        mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        if (mForegroundDelegate != null) {
+            mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        }
     }
 
     @Override
@@ -92,8 +94,11 @@ public class ForegroundButton extends AppCompatButton {
      *
      * @param drawable The Drawable to be drawn on top of the children.
      */
+    @Override
     public void setForeground(Drawable drawable) {
-        mForegroundDelegate.setForeground(drawable);
+        if (mForegroundDelegate != null) {
+            mForegroundDelegate.setForeground(drawable);
+        }
     }
 
     /**
@@ -102,6 +107,7 @@ public class ForegroundButton extends AppCompatButton {
      *
      * @return A Drawable or null if no foreground was set.
      */
+    @Override
     public Drawable getForeground() {
         return mForegroundDelegate.getForeground();
     }
