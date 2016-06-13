@@ -19,9 +19,11 @@
 
 package com.commit451.foregroundviews;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -39,102 +41,108 @@ public class ForegroundLinearLayout extends LinearLayout {
     }
 
     public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-
-        mForegroundDelegate = new ForegroundDelegate(this);
-        mForegroundDelegate.init(context, attrs, defStyle);
+        this(context, attrs, defStyle, 0);
     }
 
-    /**
-     * Describes how the foreground is positioned.
-     *
-     * @return foreground gravity.
-     *
-     * @see #setForegroundGravity(int)
-     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            mForegroundDelegate = new ForegroundDelegate(this);
+            mForegroundDelegate.init(context, attrs, defStyleAttr, defStyleRes);
+        }
+    }
+
     @Override
     public int getForegroundGravity() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return super.getForegroundGravity();
+        }
         return mForegroundDelegate.getForegroundGravity();
     }
 
-    /**
-     * Describes how the foreground is positioned. Defaults to START and TOP.
-     *
-     * @param foregroundGravity See {@link android.view.Gravity}
-     *
-     * @see #getForegroundGravity()
-     */
     @Override
     public void setForegroundGravity(int foregroundGravity) {
-        if (mForegroundDelegate != null) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            super.setForegroundGravity(foregroundGravity);
+        } else {
             mForegroundDelegate.setForegroundGravity(foregroundGravity);
         }
     }
 
     @Override
     protected boolean verifyDrawable(Drawable who) {
-        return super.verifyDrawable(who) || (who == mForegroundDelegate.getForeground());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return super.verifyDrawable(who) || (who == mForegroundDelegate.getForeground());
+        } else {
+            return super.verifyDrawable(who);
+        }
     }
 
     @Override
     public void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        mForegroundDelegate.jumpDrawablesToCurrentState();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            mForegroundDelegate.jumpDrawablesToCurrentState();
+        }
     }
 
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        mForegroundDelegate.drawableStateChanged();
-    }
-
-    /**
-     * Supply a Drawable that is to be rendered on top of all of the child
-     * views in the frame layout.  Any padding in the Drawable will be taken
-     * into account by ensuring that the children are inset to be placed
-     * inside of the padding area.
-     *
-     * @param drawable The Drawable to be drawn on top of the children.
-     */
-    @Override
-    public void setForeground(Drawable drawable) {
-        if (mForegroundDelegate != null) {
-            mForegroundDelegate.setForeground(drawable);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            mForegroundDelegate.drawableStateChanged();
         }
     }
 
-    /**
-     * Returns the drawable used as the foreground of this FrameLayout. The
-     * foreground drawable, if non-null, is always drawn on top of the children.
-     *
-     * @return A Drawable or null if no foreground was set.
-     */
+
+    @Override
+    public void setForeground(Drawable foreground) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            super.setForeground(foreground);
+        } else {
+            mForegroundDelegate.setForeground(foreground);
+        }
+    }
+
     @Override
     public Drawable getForeground() {
-        return mForegroundDelegate.getForeground();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return super.getForeground();
+        } else {
+            return mForegroundDelegate.getForeground();
+        }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        mForegroundDelegate.onLayout(changed, left, top, right, bottom);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            mForegroundDelegate.onLayout(changed, left, top, right, bottom);
+        }
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mForegroundDelegate.onSizeChanged(w, h, oldw, oldh);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            mForegroundDelegate.onSizeChanged(w, h, oldw, oldh);
+        }
     }
 
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        mForegroundDelegate.draw(canvas);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            mForegroundDelegate.draw(canvas);
+        }
     }
 
     @Override
     public void drawableHotspotChanged(float x, float y) {
         super.drawableHotspotChanged(x, y);
-        mForegroundDelegate.drawableHotspotChanged(x, y);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            mForegroundDelegate.drawableHotspotChanged(x, y);
+        }
     }
 }

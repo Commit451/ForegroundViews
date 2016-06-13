@@ -34,10 +34,10 @@ public class ForegroundDelegate {
         mView = view;
     }
 
-    public void init(Context context, AttributeSet attrs, int defStyle) {
+    public void init(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundView,
-                    defStyle, 0);
+                    defStyle, defStyleRes);
 
             mForegroundGravity = a.getInt(
                     R.styleable.ForegroundView_android_foregroundGravity, mForegroundGravity);
