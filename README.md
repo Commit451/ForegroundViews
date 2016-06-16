@@ -64,6 +64,7 @@ foregroundImageView.setForeground(drawable);
 - ForegroundImageView
 - ForegroundLinearLayout
 - ForegroundRelativeLayout
+- ForegroundButton
 
 There may be others that people want, so pull requests are encouraged!
 
