@@ -23,6 +23,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
@@ -66,7 +67,7 @@ public class ForegroundImageView extends AppCompatImageView {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable who) {
+    protected boolean verifyDrawable(@NonNull Drawable who) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return super.verifyDrawable(who) || (who == mForegroundDelegate.getForeground());
         } else {

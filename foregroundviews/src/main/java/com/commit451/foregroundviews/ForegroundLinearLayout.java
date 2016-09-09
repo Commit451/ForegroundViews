@@ -24,6 +24,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
@@ -78,7 +79,7 @@ public class ForegroundLinearLayout extends LinearLayout {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable who) {
+    protected boolean verifyDrawable(@NonNull Drawable who) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return super.verifyDrawable(who) || (who == mForegroundDelegate.getForeground());
         } else {
