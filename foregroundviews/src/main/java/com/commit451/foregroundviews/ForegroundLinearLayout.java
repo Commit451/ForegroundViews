@@ -41,12 +41,19 @@ public class ForegroundLinearLayout extends LinearLayout {
     }
 
     public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyle) {
-        this(context, attrs, defStyle, 0);
+        super(context, attrs, defStyle);
+
+        init(context, attrs, defStyle, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+
+        init(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             mForegroundDelegate = new ForegroundDelegate(this);
             mForegroundDelegate.init(context, attrs, defStyleAttr, defStyleRes);
