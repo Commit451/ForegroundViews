@@ -21,7 +21,7 @@ allprojects {
 Then, add the library to your project `build.gradle`
 ```gradle
 dependencies {
-    compile 'com.github.Commit451:ForegroundViews:2.1.0'
+    compile 'com.github.Commit451:ForegroundViews:2.2.0'
 }
 ```
 
