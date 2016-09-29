@@ -43,7 +43,7 @@ public class ForegroundImageView extends AppCompatImageView {
     public ForegroundImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || getContext().getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
             mForegroundDelegate = new ForegroundDelegate(this);
             mForegroundDelegate.init(context, attrs, defStyle, 0);
         }
@@ -51,24 +51,25 @@ public class ForegroundImageView extends AppCompatImageView {
 
     @Override
     public int getForegroundGravity() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
+            return mForegroundDelegate.getForegroundGravity();
+        } else {
             return super.getForegroundGravity();
         }
-        return mForegroundDelegate.getForegroundGravity();
     }
 
     @Override
     public void setForegroundGravity(int foregroundGravity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            super.setForegroundGravity(foregroundGravity);
-        } else {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        } else {
+            super.setForegroundGravity(foregroundGravity);
         }
     }
 
     @Override
     protected boolean verifyDrawable(@NonNull Drawable who) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             return super.verifyDrawable(who) || (who == mForegroundDelegate.getForeground());
         } else {
             return super.verifyDrawable(who);
@@ -78,7 +79,7 @@ public class ForegroundImageView extends AppCompatImageView {
     @Override
     public void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.jumpDrawablesToCurrentState();
         }
     }
@@ -86,7 +87,7 @@ public class ForegroundImageView extends AppCompatImageView {
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.drawableStateChanged();
         }
     }
@@ -94,26 +95,26 @@ public class ForegroundImageView extends AppCompatImageView {
 
     @Override
     public void setForeground(Drawable foreground) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            super.setForeground(foreground);
-        } else {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.setForeground(foreground);
+        } else {
+            super.setForeground(foreground);
         }
     }
 
     @Override
     public Drawable getForeground() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return super.getForeground();
-        } else {
+        if (mForegroundDelegate != null) {
             return mForegroundDelegate.getForeground();
+        } else {
+            return super.getForeground();
         }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.onLayout(changed, left, top, right, bottom);
         }
     }
@@ -121,7 +122,7 @@ public class ForegroundImageView extends AppCompatImageView {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.onSizeChanged(w, h, oldw, oldh);
         }
     }
@@ -129,7 +130,7 @@ public class ForegroundImageView extends AppCompatImageView {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.draw(canvas);
         }
     }
@@ -137,7 +138,7 @@ public class ForegroundImageView extends AppCompatImageView {
     @Override
     public void drawableHotspotChanged(float x, float y) {
         super.drawableHotspotChanged(x, y);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.drawableHotspotChanged(x, y);
         }
     }

@@ -19,17 +19,16 @@
 
 package com.commit451.foregroundviews;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
 
 
-public class ForegroundLinearLayout extends LinearLayout {
+public class ForegroundLinearLayout extends LinearLayoutCompat {
 
     ForegroundDelegate mForegroundDelegate;
 
@@ -47,15 +46,8 @@ public class ForegroundLinearLayout extends LinearLayout {
         init(context, attrs, defStyle, 0);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-
-        init(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || getContext().getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
             mForegroundDelegate = new ForegroundDelegate(this);
             mForegroundDelegate.init(context, attrs, defStyleAttr, defStyleRes);
         }
@@ -63,24 +55,25 @@ public class ForegroundLinearLayout extends LinearLayout {
 
     @Override
     public int getForegroundGravity() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
+            return mForegroundDelegate.getForegroundGravity();
+        } else {
             return super.getForegroundGravity();
         }
-        return mForegroundDelegate.getForegroundGravity();
     }
 
     @Override
     public void setForegroundGravity(int foregroundGravity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            super.setForegroundGravity(foregroundGravity);
-        } else {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.setForegroundGravity(foregroundGravity);
+        } else {
+            super.setForegroundGravity(foregroundGravity);
         }
     }
 
     @Override
     protected boolean verifyDrawable(@NonNull Drawable who) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             return super.verifyDrawable(who) || (who == mForegroundDelegate.getForeground());
         } else {
             return super.verifyDrawable(who);
@@ -90,7 +83,7 @@ public class ForegroundLinearLayout extends LinearLayout {
     @Override
     public void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.jumpDrawablesToCurrentState();
         }
     }
@@ -98,7 +91,7 @@ public class ForegroundLinearLayout extends LinearLayout {
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.drawableStateChanged();
         }
     }
@@ -106,26 +99,26 @@ public class ForegroundLinearLayout extends LinearLayout {
 
     @Override
     public void setForeground(Drawable foreground) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            super.setForeground(foreground);
-        } else {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.setForeground(foreground);
+        } else {
+            super.setForeground(foreground);
         }
     }
 
     @Override
     public Drawable getForeground() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return super.getForeground();
-        } else {
+        if (mForegroundDelegate != null) {
             return mForegroundDelegate.getForeground();
+        } else {
+            return super.getForeground();
         }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.onLayout(changed, left, top, right, bottom);
         }
     }
@@ -133,7 +126,7 @@ public class ForegroundLinearLayout extends LinearLayout {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.onSizeChanged(w, h, oldw, oldh);
         }
     }
@@ -141,7 +134,7 @@ public class ForegroundLinearLayout extends LinearLayout {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.draw(canvas);
         }
     }
@@ -149,7 +142,7 @@ public class ForegroundLinearLayout extends LinearLayout {
     @Override
     public void drawableHotspotChanged(float x, float y) {
         super.drawableHotspotChanged(x, y);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        if (mForegroundDelegate != null) {
             mForegroundDelegate.drawableHotspotChanged(x, y);
         }
     }
