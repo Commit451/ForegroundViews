@@ -1,5 +1,5 @@
 # ForegroundViews
-Views that supports a foreground, like FrameLayout does. Inspired by [Chris Banes' gist]( https://gist.github.com/chrisbanes/9091754) and this [post](https://plus.google.com/+NickButcher/posts/azEU6s4APbu) as well as [this](https://github.com/NightlyNexus/cardslib/blob/master/library-core/src/main/java/it/gmariotti/cardslib/library/view/ForegroundLinearLayout.java).
+Views that support a foreground. Inspired by [Chris Banes' gist]( https://gist.github.com/chrisbanes/9091754) and this [post](https://plus.google.com/+NickButcher/posts/azEU6s4APbu) as well as [this](https://github.com/NightlyNexus/cardslib/blob/master/library-core/src/main/java/it/gmariotti/cardslib/library/view/ForegroundLinearLayout.java).
 
 ![Sample Gif](https://raw.githubusercontent.com/Commit451/ForegroundViews/master/art/image_ripple.gif)
 
@@ -21,7 +21,7 @@ allprojects {
 Then, add the library to your project `build.gradle`
 ```gradle
 dependencies {
-    compile 'com.github.Commit451:ForegroundViews:2.2.0'
+    compile 'com.github.Commit451:ForegroundViews:2.2.1'
 }
 ```
 
@@ -66,7 +66,7 @@ foregroundImageView.setForeground(drawable);
 - ForegroundRelativeLayout
 - ForegroundButton
 
-There may be others that people want, so pull requests are encouraged!
+There may be others that people want, so pull requests are encouraged! Please note that `FrameLayout` already supports a foreground for all API levels.
 
 # Create Your Own Views
 If you take a look at the source, you will see that the supported views all are very similar in construction. Operations are overridden in the views and then passed along to the `ForegroundDelegate` so that the foreground logic is easily shared and reusable on new views. Most of the time, copying the source of `ForegroundLinearLayout` and then modifying the name and the extended view is all you need to do.
