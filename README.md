@@ -21,7 +21,7 @@ allprojects {
 Then, add the library to your project `build.gradle`
 ```gradle
 dependencies {
-    compile 'com.github.Commit451:ForegroundViews:2.2.1'
+    compile 'com.github.Commit451:ForegroundViews:latest.version.here'
 }
 ```
 
@@ -65,6 +65,7 @@ foregroundImageView.setForeground(drawable);
 - ForegroundLinearLayout
 - ForegroundRelativeLayout
 - ForegroundButton
+- ForegroundTextView
 
 There may be others that people want, so pull requests are encouraged! Please note that `FrameLayout` already supports a foreground for all API levels.
 
