@@ -19,16 +19,17 @@
 
 package com.commit451.foregroundviews;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.widget.LinearLayout;
 
 
-public class ForegroundLinearLayout extends LinearLayoutCompat {
+public class ForegroundLinearLayout extends LinearLayout {
 
     ForegroundDelegate mForegroundDelegate;
 
@@ -42,8 +43,13 @@ public class ForegroundLinearLayout extends LinearLayoutCompat {
 
     public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
         init(context, attrs, defStyle, 0);
+    }
+
+    @TargetApi(21)
+    public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs, defStyleAttr, defStyleRes);
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {

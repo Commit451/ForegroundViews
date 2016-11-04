@@ -67,7 +67,7 @@ foregroundImageView.setForeground(drawable);
 - ForegroundButton
 - ForegroundTextView
 
-There may be others that people want, so pull requests are encouraged! Please note that `FrameLayout` already supports a foreground for all API levels.
+There may be others that people want, so pull requests are encouraged! Please note that `FrameLayout` and `CardView` already support a foreground for all API levels.
 
 # Create Your Own Views
 If you take a look at the source, you will see that the supported views all are very similar in construction. Operations are overridden in the views and then passed along to the `ForegroundDelegate` so that the foreground logic is easily shared and reusable on new views. Most of the time, copying the source of `ForegroundLinearLayout` and then modifying the name and the extended view is all you need to do.

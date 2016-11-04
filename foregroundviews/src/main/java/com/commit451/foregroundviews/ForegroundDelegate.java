@@ -18,16 +18,11 @@ import android.view.View;
 public class ForegroundDelegate {
 
     private Drawable mForeground;
-
-    private final Rect mSelfBounds = new Rect();
-    private final Rect mOverlayBounds = new Rect();
-
+    private Rect mSelfBounds = new Rect();
+    private Rect mOverlayBounds = new Rect();
     private int mForegroundGravity = Gravity.FILL;
-
-    protected boolean mForegroundInPadding = true;
-
-    boolean mForegroundBoundsChanged = false;
-
+    private boolean mForegroundInPadding = true;
+    private boolean mForegroundBoundsChanged = false;
     private View mView;
 
     public ForegroundDelegate(View view) {
