@@ -41,8 +41,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:scaleType="centerCrop"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"/>
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="centerCrop"/>
 
                 <com.commit451.foregroundviews.ForegroundLinearLayout
                     android:layout_width="match_parent"
@@ -93,21 +93,21 @@
                 <com.commit451.foregroundviews.ForegroundButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
                     android:layout_margin="16dp"
-                    android:clickable="true"
                     android:background="?attr/colorAccent"
+                    android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:padding="16dp"
                     android:text="This is a foreground button"/>
 
                 <com.commit451.foregroundviews.ForegroundTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
                     android:layout_margin="16dp"
-                    android:clickable="true"
                     android:background="?attr/colorAccent"
+                    android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
+                    android:padding="16dp"
                     android:text="This is a foreground text view"/>
 
             </LinearLayout>
