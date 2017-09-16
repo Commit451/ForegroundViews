@@ -112,14 +112,6 @@ public class ForegroundTextView extends AppCompatTextView {
     }
 
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
-        if (mForegroundDelegate != null) {
-            mForegroundDelegate.onLayout(changed, left, top, right, bottom);
-        }
-    }
-
-    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (mForegroundDelegate != null) {
