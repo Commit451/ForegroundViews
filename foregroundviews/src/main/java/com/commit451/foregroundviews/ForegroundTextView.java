@@ -23,10 +23,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 
 public class ForegroundTextView extends AppCompatTextView {
 
