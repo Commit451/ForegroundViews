@@ -31,7 +31,7 @@ import androidx.annotation.NonNull;
 
 public class ForegroundLinearLayout extends LinearLayout {
 
-    ForegroundDelegate mForegroundDelegate;
+    private ForegroundDelegate mForegroundDelegate;
 
     public ForegroundLinearLayout(Context context) {
         this(context, null);
@@ -41,9 +41,9 @@ public class ForegroundLinearLayout extends LinearLayout {
         this(context, attrs, 0);
     }
 
-    public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init(context, attrs, defStyle, 0);
+    public ForegroundLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr, 0);
     }
 
     @TargetApi(21)
@@ -53,7 +53,7 @@ public class ForegroundLinearLayout extends LinearLayout {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || getContext().getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
             mForegroundDelegate = new ForegroundDelegate(this);
             mForegroundDelegate.init(context, attrs, defStyleAttr, defStyleRes);
         }
@@ -101,7 +101,6 @@ public class ForegroundLinearLayout extends LinearLayout {
             mForegroundDelegate.drawableStateChanged();
         }
     }
-
 
     @Override
     public void setForeground(Drawable foreground) {

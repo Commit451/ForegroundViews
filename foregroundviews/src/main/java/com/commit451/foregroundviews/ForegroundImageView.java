@@ -30,7 +30,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 public class ForegroundImageView extends AppCompatImageView {
 
-    ForegroundDelegate mForegroundDelegate;
+    private ForegroundDelegate mForegroundDelegate;
 
     public ForegroundImageView(Context context) {
         this(context, null);
@@ -40,12 +40,12 @@ public class ForegroundImageView extends AppCompatImageView {
         this(context, attrs, 0);
     }
 
-    public ForegroundImageView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public ForegroundImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || getContext().getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
             mForegroundDelegate = new ForegroundDelegate(this);
-            mForegroundDelegate.init(context, attrs, defStyle, 0);
+            mForegroundDelegate.init(context, attrs, defStyleAttr, 0);
         }
     }
 
@@ -91,7 +91,6 @@ public class ForegroundImageView extends AppCompatImageView {
             mForegroundDelegate.drawableStateChanged();
         }
     }
-
 
     @Override
     public void setForeground(Drawable foreground) {

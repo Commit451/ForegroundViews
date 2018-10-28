@@ -30,22 +30,22 @@ import androidx.appcompat.widget.AppCompatButton;
 
 public class ForegroundButton extends AppCompatButton {
 
-    ForegroundDelegate mForegroundDelegate;
+    private ForegroundDelegate mForegroundDelegate;
 
     public ForegroundButton(Context context) {
         this(context, null);
     }
 
     public ForegroundButton(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, androidx.appcompat.R.attr.buttonStyle);
     }
 
-    public ForegroundButton(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public ForegroundButton(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || getContext().getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
             mForegroundDelegate = new ForegroundDelegate(this);
-            mForegroundDelegate.init(context, attrs, defStyle, 0);
+            mForegroundDelegate.init(context, attrs, defStyleAttr, 0);
         }
     }
 
@@ -91,7 +91,6 @@ public class ForegroundButton extends AppCompatButton {
             mForegroundDelegate.drawableStateChanged();
         }
     }
-
 
     @Override
     public void setForeground(Drawable foreground) {
