@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop" />
 
                 <com.commit451.foregroundviews.ForegroundLinearLayout
                     android:layout_width="match_parent"
@@ -56,12 +55,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Hello"
-                        android:textSize="22sp"/>
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is a LinearLayout with a foreground"/>
+                        android:text="This is a LinearLayout with a foreground" />
 
 
                 </com.commit451.foregroundviews.ForegroundLinearLayout>
@@ -79,16 +78,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Bonjor"
-                        android:textSize="22sp"/>
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/bonjor"
-                        android:text="This is a RelativeLayout with a foreground"/>
+                        android:text="This is a RelativeLayout with a foreground" />
 
 
                 </com.commit451.foregroundviews.ForegroundRelativeLayout>
+
+                <com.commit451.foregroundviews.constraintlayout.ForegroundConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/hola"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Hola"
+                        android:textSize="22sp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="This is a ConstraintLayout with a foreground"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="48dp" />
+
+
+                </com.commit451.foregroundviews.constraintlayout.ForegroundConstraintLayout>
 
                 <com.commit451.foregroundviews.ForegroundButton
                     android:layout_width="wrap_content"
@@ -98,7 +125,7 @@
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="16dp"
-                    android:text="This is a foreground button"/>
+                    android:text="This is a foreground button" />
 
                 <com.commit451.foregroundviews.ForegroundTextView
                     android:layout_width="wrap_content"
@@ -108,7 +135,7 @@
                     android:clickable="true"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="16dp"
-                    android:text="This is a foreground text view"/>
+                    android:text="This is a foreground text view" />
 
             </LinearLayout>
         </ScrollView>

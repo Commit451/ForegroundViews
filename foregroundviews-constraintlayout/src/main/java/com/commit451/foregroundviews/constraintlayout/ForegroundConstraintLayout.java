@@ -17,13 +17,15 @@
  *  *****************************************************************************
  */
 
-package com.commit451.foregroundviews;
+package com.commit451.foregroundviews.constraintlayout;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
+
+import com.commit451.foregroundviews.ForegroundDelegate;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;

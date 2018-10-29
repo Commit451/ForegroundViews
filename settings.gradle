@@ -1,1 +1,1 @@
-include ':app', ':foregroundviews'
+include ':app', ':foregroundviews', ':foregroundviews-constraintlayout'

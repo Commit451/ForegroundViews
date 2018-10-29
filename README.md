@@ -22,6 +22,8 @@ Then, add the library to your project `build.gradle`
 ```gradle
 dependencies {
     implementation 'com.github.Commit451:ForegroundViews:latest.version.here'
+    // for ConstraintLayout support
+    implementation 'com.github.Commit451:ForegroundViews:latest.version.here'
 }
 ```
 
