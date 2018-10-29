@@ -21,9 +21,9 @@ allprojects {
 Then, add the library to your project `build.gradle`
 ```gradle
 dependencies {
-    implementation 'com.github.Commit451:ForegroundViews:latest.version.here'
+    implementation 'com.github.Commit451.ForegroundViews:foregroundviews:latest.version.here'
     // for ConstraintLayout support
-    implementation 'com.github.Commit451:ForegroundViews:latest.version.here'
+    implementation 'com.github.Commit451.Foregroundviews:foregroundviews-constraintlayout:latest.version.here'
 }
 ```
 
@@ -68,6 +68,7 @@ foregroundImageView.setForeground(drawable);
 - ForegroundRelativeLayout
 - ForegroundButton
 - ForegroundTextView
+- ForegroundConstraintLayout
 
 There may be others that people want, so pull requests are encouraged! Please note that `FrameLayout` and `CardView` already support a foreground for all API levels.
 
