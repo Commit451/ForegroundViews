@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+
 /**
  * Delegate that actually does the foreground things, so that the logic can be shared between views
  * and so that others can easily create views that support a foreground
@@ -29,7 +31,7 @@ public class ForegroundDelegate {
         mView = view;
     }
 
-    public void init(Context context, AttributeSet attrs, int defStyle, int defStyleRes) {
+    public void init(Context context, @Nullable AttributeSet attrs, int defStyle, int defStyleRes) {
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundView,
                     defStyle, defStyleRes);
@@ -63,6 +65,7 @@ public class ForegroundDelegate {
      *
      * @return A Drawable or null if no foreground was set.
      */
+    @Nullable
     public Drawable getForeground() {
         return mForeground;
     }
@@ -75,7 +78,7 @@ public class ForegroundDelegate {
      *
      * @param drawable The Drawable to be drawn on top of the children.
      */
-    public void setForeground(Drawable drawable) {
+    public void setForeground(@Nullable Drawable drawable) {
         if (mForeground != drawable) {
             if (mForeground != null) {
                 mForeground.setCallback(null);
