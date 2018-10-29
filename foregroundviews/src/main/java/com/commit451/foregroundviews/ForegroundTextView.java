@@ -30,22 +30,22 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 public class ForegroundTextView extends AppCompatTextView {
 
-    ForegroundDelegate mForegroundDelegate;
+    private ForegroundDelegate mForegroundDelegate;
 
     public ForegroundTextView(Context context) {
         this(context, null);
     }
 
     public ForegroundTextView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, android.R.attr.textViewStyle);
     }
 
-    public ForegroundTextView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public ForegroundTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || getContext().getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || context.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.M) {
             mForegroundDelegate = new ForegroundDelegate(this);
-            mForegroundDelegate.init(context, attrs, defStyle, 0);
+            mForegroundDelegate.init(context, attrs, defStyleAttr, 0);
         }
     }
 
@@ -91,7 +91,6 @@ public class ForegroundTextView extends AppCompatTextView {
             mForegroundDelegate.drawableStateChanged();
         }
     }
-
 
     @Override
     public void setForeground(Drawable foreground) {

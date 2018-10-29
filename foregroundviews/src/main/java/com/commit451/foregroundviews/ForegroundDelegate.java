@@ -19,13 +19,13 @@ import androidx.annotation.Nullable;
  */
 public class ForegroundDelegate {
 
+    private final View mView;
     private Drawable mForeground;
     private Rect mSelfBounds = new Rect();
     private Rect mOverlayBounds = new Rect();
     private int mForegroundGravity = Gravity.FILL;
     private boolean mForegroundInPadding = true;
     private boolean mForegroundBoundsChanged = false;
-    private View mView;
 
     public ForegroundDelegate(View view) {
         mView = view;
